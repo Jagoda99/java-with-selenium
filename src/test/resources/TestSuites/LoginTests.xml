@@ -1,0 +1,27 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="LoginTests" verbose="1">
+
+	<test name="PositiveTests">
+		<groups>
+			<run>
+				<include name="positiveLoginTest"></include>
+			</run>
+		</groups>
+		<classes>
+			<class name="com.saucedemo.LoginTests" />
+		</classes>
+	</test>
+
+	<test name="NegativeTests">
+	<groups>
+		<run>
+			<include name="negativeLoginTests"></include>
+		</run>
+	</groups>
+		<classes>
+			<class name="com.saucedemo.LoginTests" />
+		</classes>
+	</test>
+
+</suite>

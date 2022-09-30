@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2022-09-30T13:57:13 CEST" name="Default suite" finished-at="2022-09-30T13:57:17 CEST" duration-ms="3931">
+    <groups>
+    </groups>
+    <test started-at="2022-09-30T13:57:13 CEST" name="Default test" finished-at="2022-09-30T13:57:17 CEST" duration-ms="3931">
+      <class name="com.saucedemo.Tests.BuyingProcessTest">
+        <test-method signature="buyingProcess()[pri:0, instance:com.saucedemo.Tests.BuyingProcessTest@5876a9af]" started-at="2022-09-30T13:57:13 CEST" name="buyingProcess" finished-at="2022-09-30T13:57:17 CEST" duration-ms="3897" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- buyingProcess -->
+      </class> <!-- com.saucedemo.Tests.BuyingProcessTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
