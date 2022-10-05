@@ -1,94 +1,34 @@
 package com.saucedemo.Tests;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import com.saucedemo.TestComponents.Initialization;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.saucedemo.Pages.LoginPage;
 
-public class LoginTest {
+import java.io.IOException;
 
-	@Test
-	public void standardUserLoginTest() {
+public class LoginTest extends Initialization {
+
+	@Test(dataProvider = "getData")
+	public void standardUserLoginTest(String email, String password) throws IOException {
 
 		System.out.println("Starting standardUserLoginTest");
 
-		System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-		WebDriver driver = new ChromeDriver();
-		driver.manage().window().maximize();
-
-		LoginPage loginPage = new LoginPage(driver);
-		loginPage.goTo("https://www.saucedemo.com/");
-		loginPage.loginApp("standard_user", "secret_sauce");
+		LoginPage loginPage = launchApp();
+		loginPage.loginApp(email, password);
 		
 		String expectedUrl = "https://www.saucedemo.com/inventory.html";
 		String actualUrl = driver.getCurrentUrl();
 		Assert.assertEquals(actualUrl, expectedUrl, "Actual page url is not the same as expected");
 
-		driver.quit();
+	}
+	@DataProvider
+	public Object[][] getData() {
+
+		return new Object[][] {{"standard_user","secret_sauce"},{"locked_out_user","secret_sauce"},
+				{"problem_user","secret_sauce"},{"performance_glitch_user","secret_sauce"}};
 	}
 
-	@Test
-	public void lockedOutUserLoginTest() {
-
-		System.out.println("Starting lockedOutUserLoginTest");
-
-		System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-		WebDriver driver = new ChromeDriver();
-		driver.manage().window().maximize();
-
-		LoginPage loginPage = new LoginPage(driver);
-
-		loginPage.goTo("https://www.saucedemo.com/");
-		loginPage.loginApp("locked_out_user", "secret_sauce");
-		
-		String expectedUrl = "https://www.saucedemo.com/inventory.html";
-		String actualUrl = driver.getCurrentUrl();
-		Assert.assertEquals(actualUrl, expectedUrl, "Actual page url is not the same as expected");	
-		
-		driver.quit();
-	}
-
-	@Test
-	public void problemUserLoginTest() {
-
-		System.out.println("Starting problemUserLoginTest");
-
-		System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-		WebDriver driver = new ChromeDriver();
-		driver.manage().window().maximize();
-
-		LoginPage loginPage = new LoginPage(driver);
-
-		loginPage.goTo("https://www.saucedemo.com/");
-		loginPage.loginApp("problem_user", "secret_sauce");
-		
-		String expectedUrl = "https://www.saucedemo.com/inventory.html";
-		String actualUrl = driver.getCurrentUrl();
-		Assert.assertEquals(actualUrl, expectedUrl, "Actual page url is not the same as expected");
-		
-		driver.quit();
-	}
-
-	@Test
-	public void performanceGlitchUserLoginTest() {
-
-		System.out.println("Starting performanceGlitchUserLoginTest");
-
-		System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-		WebDriver driver = new ChromeDriver();
-		driver.manage().window().maximize();
-
-		LoginPage loginPage = new LoginPage(driver);
-
-		loginPage.goTo("https://www.saucedemo.com/");
-		loginPage.loginApp("performance_glitch_user", "secret_sauce");
-
-		String expectedUrl = "https://www.saucedemo.com/inventory.html";
-		String actualUrl = driver.getCurrentUrl();
-		Assert.assertEquals(actualUrl, expectedUrl, "Actual page url is not the same as expected");
-		
-		driver.quit();
-	}
 }

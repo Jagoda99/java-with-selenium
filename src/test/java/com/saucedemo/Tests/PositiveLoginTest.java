@@ -1,24 +1,20 @@
 package com.saucedemo.Tests;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import com.saucedemo.TestComponents.Initialization;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.saucedemo.Pages.LoginPage;
 
-public class PositiveLoginTest {
+import java.io.IOException;
+
+public class PositiveLoginTest extends Initialization {
 
 	@Test
-	public void positiveLoginTest() {
+	public void positiveLoginTest() throws IOException {
 		System.out.println("Starting positiveLoginTest");
 
-		System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-		WebDriver driver = new ChromeDriver();
-		driver.manage().window().maximize();
-
-		LoginPage loginPage = new LoginPage(driver);
-		loginPage.goTo("https://www.saucedemo.com/");
+		LoginPage loginPage = launchApp();
 		loginPage.loginApp("standard_user", "secret_sauce");
 
 		String expectedUrl = "https://www.saucedemo.com/inventory.html";

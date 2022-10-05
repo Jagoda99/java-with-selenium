@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import com.saucedemo.AbstractComponents.AbstractComponent;
+import com.saucedemo.TestComponents.AbstractComponent;
 
 public class CartPage extends AbstractComponent {
 
@@ -26,15 +26,16 @@ public class CartPage extends AbstractComponent {
 	WebElement checkoutButton;
 	
 	public Boolean VerifyProduct(String productName) {
-		
-		Boolean match = cartProducts.stream().anyMatch(cartProduct -> 
+
+		return cartProducts.stream().anyMatch(cartProduct ->
 		cartProduct.getText().equalsIgnoreCase(productName));
-		return match;
 	}
-	public void goToCheckout() {
+	public CheckoutPage goToCheckout() {
 		
 		checkoutButton.click();
-		
+		return new CheckoutPage(driver);
+
+
 	}
 	
 

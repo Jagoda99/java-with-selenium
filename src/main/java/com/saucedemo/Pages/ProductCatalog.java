@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import com.saucedemo.AbstractComponents.AbstractComponent;
+import com.saucedemo.TestComponents.AbstractComponent;
 
 public class ProductCatalog extends AbstractComponent {
 
@@ -24,15 +24,13 @@ public class ProductCatalog extends AbstractComponent {
 	@FindBy(css = ".inventory_item")
 	List<WebElement> allProducts;
 	
-	By products = By.cssSelector(".inventory_item");
 	By addToCart = By.cssSelector(".pricebar button");
 	
 
 	public WebElement getProductByName(String productName) {
 
-		WebElement product = allProducts.stream().filter(prod -> 
+		return allProducts.stream().filter(prod ->
 		prod.findElement(By.cssSelector(".inventory_item_name")).getText().equals(productName)).findFirst().orElse(null);
-		return product;
 	}
 	
 	public void addProductToCart(String productName) {

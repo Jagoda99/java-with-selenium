@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import com.saucedemo.AbstractComponents.AbstractComponent;
+import com.saucedemo.TestComponents.AbstractComponent;
 
 public class LoginPage extends AbstractComponent{
 	
@@ -25,12 +25,18 @@ public class LoginPage extends AbstractComponent{
 	
 	@FindBy(id = "login-button")
 	WebElement submit;
+	@FindBy(xpath = "//div[@class='error-message-container error']")
+	WebElement errorMessage;
 
-	public void loginApp(String email, String password) {
+	public String getErrorMessage() {
+		return errorMessage.getText();
+	}
+	public ProductCatalog loginApp(String email, String password) {
 		
 		username.sendKeys(email);
 		passwordEl.sendKeys(password);
 		submit.click();
+		return new ProductCatalog(driver);
 		
 	}
 }

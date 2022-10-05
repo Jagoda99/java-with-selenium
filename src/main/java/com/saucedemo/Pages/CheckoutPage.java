@@ -1,16 +1,13 @@
 package com.saucedemo.Pages;
 
-import javax.sound.midi.Soundbank;
-
 import java.util.List;
-import java.util.regex.Matcher;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import com.saucedemo.AbstractComponents.AbstractComponent;
+import com.saucedemo.TestComponents.AbstractComponent;
 
 public class CheckoutPage extends AbstractComponent {
 
@@ -54,10 +51,9 @@ public class CheckoutPage extends AbstractComponent {
 	}
 	
 	public Boolean VerifyFinishProduct(String productName) {
-		
-		Boolean match = finishProducts.stream().anyMatch(finishProduct -> 
-		finishProduct.getText().equalsIgnoreCase(productName));
-		return match;
+
+		return finishProducts.stream().anyMatch(finishProduct ->
+				finishProduct.getText().equalsIgnoreCase(productName));
 	}
 	public void finishOrder() {
 
